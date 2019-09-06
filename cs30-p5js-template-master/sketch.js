@@ -8,10 +8,10 @@
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  background(220);
 }
 
 function draw() {
-  background(220);
-  fill(0);
+  fill(155);
   ellipse(mouseX, mouseY, 100, 100);
 }
