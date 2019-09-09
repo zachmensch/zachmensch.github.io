@@ -1,17 +1,13 @@
-// Project Title
-// Your Name
-// Date
+// Line Art Demo
+// Zach Mesnch
+// September 9th, 2019
 //
-// Extra for Experts:
-// - describe what you did to take this project "above and beyond"
-
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  background(220);
+  background(0);
 }
 
 function draw() {
-  fill(155);
-  ellipse(mouseX, mouseY, 100, 100);
+
 }
