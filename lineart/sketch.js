@@ -5,9 +5,11 @@
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  background(0);
+  background(255);
 }
 
 function draw() {
-  line(0, 0, 200, 200)
+  if (mouseIsPressed) {
+    line(mouseX, mouseY, pmouseX, pmouseY)
+  }
 }
