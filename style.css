@@ -20,7 +20,7 @@ header {
 
 nav {
     float: left;
-    width: 30%;
+    width: 20%;
     height: 450px;
     background: #FFFFFF;
     padding: 20px;
@@ -55,11 +55,4 @@ footer {
     color: black;
 
 
-
-
-@media (max-width: 600px) {
-    nav, article {
-        width: 100%;
-        height: auto;
-    }
 }
