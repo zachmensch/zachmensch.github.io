@@ -1,6 +1,6 @@
-// Line Art Demo
+// First Project
 // Zach Mesnch
-// September 9th, 2019
+// September 11th, 2019
 //
 
 function setup() {
@@ -9,7 +9,6 @@ function setup() {
 }
 
 function draw() {
-  if (mouseIsPressed) {
-    line(mouseX, mouseY, pmouseX, pmouseY)
-  }
+
 }
+
