@@ -2,7 +2,8 @@
 // Zach Mesnch
 // September 11th, 2019
 //
-
+let characterX;
+let characterY;
 let screen;
 
 function setup() {
@@ -26,10 +27,10 @@ function screenDisplay() {
     rect(650, 345, 300, 100);
     rect(650, 475, 300, 100);
     fill(0,0,0)
-    textAlign(CENTER);
+    textAlign(CENTER, TOP);
     textSize(20);
-    text("Options", 800, 530);
-    text("Start", 800, 400);
+    text("Options", 800, 520);
+    text("Start", 800, 390);
     textSize(100);
     text("Tower Defense Game", 800, 100);
     textSize(15);
@@ -43,10 +44,20 @@ function screenDisplay() {
     background(255,255,102);
     fill(0,150,255);
     rect(650, 605, 300, 100); 
+    rect(845, 235, 50, 30);
+    rect(905, 235, 50, 30);
+    rect(845, 285, 50, 30);
+    rect(905, 285, 50, 30);
     fill(0,0,0);
     textAlign(CENTER);
+    textSize(100);
+    text("Options", 800, 100);
     textSize(20);
-    text("Back", 800, 660)
+    text("Back", 800, 650);
+    textSize(40);
+    textAlign(LEFT, TOP);
+    text("Sound", 660, 232.5);
+    text("Controls", 660, 282.5);
   }
 }
 
@@ -73,9 +84,11 @@ function mousePressed() {
 }
 
 function characterControl() {
+  characterX = mouseX;
+  characterY = mouseY;
   if (screen === "gameScreen") {
     fill(0);
-    ellipse(500, 500, 100);
+    ellipse(100, 100, 100);
   }
 }
 
