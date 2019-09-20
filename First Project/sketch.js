@@ -1,7 +1,8 @@
-// First Project
+// Tower Defense Project
 // Zach Mesnch
 // September 11th, 2019
 //
+
 let characterX;
 let characterY;
 let screen;
@@ -11,6 +12,11 @@ let soundOnOff = "on";
 let controlsWASDColour = "green";
 let controlsARROWSColour = "red";
 let controls = "WASD"; 
+let moveNorth;
+let moveSouth;
+let moveWest;
+let moveEast;
+
 
 function setup() {
   characterX = 800;
@@ -23,18 +29,20 @@ function draw() {
   screenDisplay();
   mousePressed();
   characterControl();
-  console.log(mouseX, mouseY);
-  console.log(screen)
+  //console.log(mouseX, mouseY);
+  //console.log(screen)
 }
 
 function screenDisplay() {
   if (screen === "titleScreen"){
+    background(255,255,102)
     titleDisplay();
   }
   if (screen === "gameScreen") {
-    //background(255,255,102);
+    background(255,255,102);
   }
   if (screen === "optionScreen"){
+    background(255,255,102);
     optionsDisplay();
   }
 }
@@ -53,14 +61,42 @@ function mousePressed() {
 }
 
 function characterControl() {
+  // Displays the Character and allowes movement controls
   if (screen === "gameScreen") {
     fill(0);
     ellipse(characterX, characterY, 100);
   }
+  if (controls === "WASD"){
+    moveNorth = 87;
+    moveSouth = 83;
+    moveWest = 65;
+    moveEast = 68;
+  }
+  if (controls === "ARROWS") {
+    moveNorth = UP_ARROW;
+    moveSouth = DOWN_ARROW;
+    moveWest = LEFT_ARROW;
+    moveEast = RIGHT_ARROW;
+  }
+  if (keyIsDown(moveNorth)) {
+    if (characterY < 790) {
+      characterY -= 5;
+    }
+  }
+  if (keyIsDown(moveSouth)) {
+    if (characterY > 0){
+    characterY += 5;
+    }
+  }
+  if (keyIsDown(moveWest)) {
+    characterX -= 5;
+  }
+  if (keyIsDown(moveEast)) {
+    characterX += 5;
+  }
 }
-function keyIsDown(UP_ARROW) {
-  characterY -= 5
-}
+
+
 
 function titleDisplay() {
   // Display for Title Screen
@@ -106,6 +142,7 @@ function optionsDisplay() {
 }
 
 function titleButtons() {
+  // Buttons for title screen
   if (mouseX > 650 && mouseX < 950 && mouseY > 345 && mouseY < 440) {
     screen = "gameScreen";
     clear();
@@ -117,6 +154,7 @@ function titleButtons() {
 }
 
 function optionsButtons() {
+  // Buttons for options screen
   if (mouseX > 650 && mouseX < 950 && mouseY > 605 && mouseY < 705) {
     screen = "titleScreen";
   }
