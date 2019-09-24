@@ -28,8 +28,8 @@ function setup() {
 function draw() {
   screenDisplay();
   mousePressed();
-  characterControl();
-  //console.log(mouseX, mouseY);
+  characterControl(); 
+  console.log(mouseX, mouseY);
   //console.log(screen)
 }
 
@@ -96,7 +96,10 @@ function characterControl() {
   }
 }
 
+function gameDisplay() {
+  // Display for Game Screen
 
+}
 
 function titleDisplay() {
   // Display for Title Screen
@@ -143,7 +146,7 @@ function optionsDisplay() {
 
 function titleButtons() {
   // Buttons for title screen
-  if (mouseX > 650 && mouseX < 950 && mouseY > 345 && mouseY < 440) {
+  if (mouseX > 650 && mouseX < 950 && mouseY > 345 && mouseY < 445) {
     screen = "gameScreen";
     clear();
   }
@@ -179,4 +182,6 @@ function optionsButtons() {
     controlsARROWSColour = "green";
   }
 }
+
+
 
