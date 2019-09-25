@@ -1,17 +1,22 @@
 // Tower Defense Project
 // Zach Mesnch
-// September 11th, 2019
+// September 2019
 //
 
-let characterX;
-let characterY;
+// State variable for what screen the game is in
 let screen;
+
+// Variables for the buttons in the Options screen
 let soundOnColour = "green";
 let soundOffColour = "red";
 let soundOnOff = "on";
+let controls = "WASD"; 
 let controlsWASDColour = "green";
 let controlsARROWSColour = "red";
-let controls = "WASD"; 
+
+// Variables for character control
+let characterX;
+let characterY;
 let moveNorth;
 let moveSouth;
 let moveWest;
@@ -29,11 +34,12 @@ function draw() {
   screenDisplay();
   mousePressed();
   characterControl(); 
-  console.log(mouseX, mouseY);
+  //console.log(mouseX, mouseY);
   //console.log(screen)
 }
 
 function screenDisplay() {
+  // Displays graphics depending on state of the "screen" variable
   if (screen === "titleScreen"){
     background(255,255,102)
     titleDisplay();
@@ -66,12 +72,14 @@ function characterControl() {
     fill(0);
     ellipse(characterX, characterY, 100);
   }
+  // Sets keycodes for WASD controls
   if (controls === "WASD"){
     moveNorth = 87;
     moveSouth = 83;
     moveWest = 65;
     moveEast = 68;
   }
+  // Sets keycodes for Arrow Keys controls
   if (controls === "ARROWS") {
     moveNorth = UP_ARROW;
     moveSouth = DOWN_ARROW;
