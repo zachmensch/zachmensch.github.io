@@ -45,7 +45,8 @@ function screenDisplay() {
     titleDisplay();
   }
   if (screen === "gameScreen") {
-    background(255,255,102);
+    background(255);
+    gameDisplay()
   }
   if (screen === "optionScreen"){
     background(255,255,102);
@@ -70,7 +71,8 @@ function characterControl() {
   // Displays the Character and allowes movement controls
   if (screen === "gameScreen") {
     fill(0);
-    ellipse(characterX, characterY, 100);
+    stroke(0)
+    ellipse(characterX, characterY, 30);
   }
   // Sets keycodes for WASD controls
   if (controls === "WASD"){
@@ -88,24 +90,29 @@ function characterControl() {
   }
   if (keyIsDown(moveNorth)) {
     if (characterY < 790) {
-      characterY -= 5;
+      characterY -= 3;
     }
   }
   if (keyIsDown(moveSouth)) {
     if (characterY > 0){
-    characterY += 5;
+    characterY += 3;
     }
   }
   if (keyIsDown(moveWest)) {
-    characterX -= 5;
+    characterX -= 3;
   }
   if (keyIsDown(moveEast)) {
-    characterX += 5;
+    characterX += 3;
   }
 }
 
 function gameDisplay() {
   // Display for Game Screen
+  fill(30,144,255)
+  stroke(30,144,255)
+  rect(0,0,width,40);
+  rect(0,0,40,height);
+  rect(0,height - 40,width,40)
 
 }
 
