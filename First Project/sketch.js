@@ -21,6 +21,7 @@ let moveNorth;
 let moveSouth;
 let moveWest;
 let moveEast;
+let characterFat;
 
 
 function setup() {
@@ -28,6 +29,7 @@ function setup() {
   characterY = 400;
   createCanvas(windowWidth, windowHeight);
   screen = "titleScreen";
+  characterFat = 30
 }
 
 function draw() {
@@ -72,7 +74,7 @@ function characterControl() {
   if (screen === "gameScreen") {
     fill(0);
     stroke(0)
-    ellipse(characterX, characterY, 30);
+    ellipse(characterX, characterY, characterFat);
   }
   // Sets keycodes for WASD controls
   if (controls === "WASD"){
@@ -89,16 +91,19 @@ function characterControl() {
     moveEast = RIGHT_ARROW;
   }
   if (keyIsDown(moveNorth)) {
-    if (characterY < 790) {
+    if (characterY < 788 + 3 && characterY > 0 + 40 + characterFat/2) {
       characterY -= 3;
+      console.log("tt")
     }
   }
   if (keyIsDown(moveSouth)) {
-    if (characterY > 0){
-    characterY += 3;
+    if (characterY > -3 && characterY < 788 - 40 - characterFat/2){
+      characterY += 3;
+      console.log("pp")
     }
   }
   if (keyIsDown(moveWest)) {
+    if (characterX < width && characterX > 0)
     characterX -= 3;
   }
   if (keyIsDown(moveEast)) {
@@ -108,11 +113,13 @@ function characterControl() {
 
 function gameDisplay() {
   // Display for Game Screen
-  fill(30,144,255)
-  stroke(30,144,255)
+  background(34,139,34);
+  fill(30,144,255);
+  stroke(30,144,255);
   rect(0,0,width,40);
   rect(0,0,40,height);
-  rect(0,height - 40,width,40)
+  rect(0,height - 40,width,40);
+  rect(width - 300, 0, 300, height);
 
 }
 
