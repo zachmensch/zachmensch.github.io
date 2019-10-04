@@ -22,6 +22,7 @@ let moveSouth;
 let moveWest;
 let moveEast;
 let characterFat;
+let characterMovespeed;
 
 
 function setup() {
@@ -30,13 +31,14 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   screen = "titleScreen";
   characterFat = 30
+  characterMovespeed = 15
 }
 
 function draw() {
   screenDisplay();
   mousePressed();
   characterControl(); 
-  //console.log(mouseX, mouseY);
+  console.log(mouseX, mouseY);
   //console.log(screen)
 }
 
@@ -91,23 +93,22 @@ function characterControl() {
     moveEast = RIGHT_ARROW;
   }
   if (keyIsDown(moveNorth)) {
-    if (characterY < 788 + 3 && characterY > 0 + 40 + characterFat/2) {
-      characterY -= 3;
-      console.log("tt")
+    if (characterY < 788 + characterMovespeed && characterY > 0 + 40 + characterFat/2) {
+      characterY -= characterMovespeed;
     }
   }
   if (keyIsDown(moveSouth)) {
-    if (characterY > -3 && characterY < 788 - 40 - characterFat/2){
-      characterY += 3;
-      console.log("pp")
+    if (characterY > - characterMovespeed && characterY < 788 - 40 - characterFat/2){
+      characterY += characterMovespeed;
     }
   }
   if (keyIsDown(moveWest)) {
-    if (characterX < width && characterX > 0)
-    characterX -= 3;
+    if (characterX < width && characterX > 0 + 40 + characterFat/2 + characterMovespeed)
+      characterX -= characterMovespeed;
   }
   if (keyIsDown(moveEast)) {
-    characterX += 3;
+    if (characterX < width - characterMovespeed - 300 - characterFat/2 && characterX > 0 + 40)
+    characterX += characterMovespeed;
   }
 }
 
