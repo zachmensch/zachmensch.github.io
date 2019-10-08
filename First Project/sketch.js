@@ -26,12 +26,12 @@ let characterMovespeed;
 
 
 function setup() {
-  characterX = 800;
+  characterX = 700;
   characterY = 400;
   createCanvas(windowWidth, windowHeight);
   screen = "titleScreen";
-  characterFat = 30
-  characterMovespeed = 15
+  characterFat = 30;
+  characterMovespeed = 5;
 }
 
 function draw() {
@@ -93,21 +93,21 @@ function characterControl() {
     moveEast = RIGHT_ARROW;
   }
   if (keyIsDown(moveNorth)) {
-    if (characterY < 788 + characterMovespeed && characterY > 0 + 40 + characterFat/2) {
+    if (characterY < 789 + characterMovespeed && characterY > 0 + 40 + characterMovespeed + characterFat/2) {
       characterY -= characterMovespeed;
     }
   }
   if (keyIsDown(moveSouth)) {
-    if (characterY > - characterMovespeed && characterY < 788 - 40 - characterFat/2){
+    if (characterY > 0 - characterMovespeed && characterY < 789 - 40 - characterFat/2 - characterMovespeed){
       characterY += characterMovespeed;
     }
   }
   if (keyIsDown(moveWest)) {
-    if (characterX < width && characterX > 0 + 40 + characterFat/2 + characterMovespeed)
+    if (characterX < width && characterX > 0 + 40 + characterFat/2)
       characterX -= characterMovespeed;
   }
   if (keyIsDown(moveEast)) {
-    if (characterX < width - characterMovespeed - 300 - characterFat/2 && characterX > 0 + 40)
+    if (characterX < width - characterMovespeed - 300 && characterX > 0 + 40)
     characterX += characterMovespeed;
   }
 }
