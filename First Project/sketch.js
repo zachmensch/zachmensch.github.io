@@ -93,22 +93,24 @@ function characterControl() {
     moveEast = RIGHT_ARROW;
   }
   if (keyIsDown(moveNorth)) {
-    if (characterY < 789 + characterMovespeed && characterY > 0 + 40 + characterMovespeed + characterFat/2) {
+    if (characterY > 0 + 40 + characterMovespeed + characterFat/2) {
       characterY -= characterMovespeed;
     }
   }
   if (keyIsDown(moveSouth)) {
-    if (characterY > 0 - characterMovespeed && characterY < 789 - 40 - characterFat/2 - characterMovespeed){
+    if (characterY < 789 - 40 - characterFat/2 - characterMovespeed) {
       characterY += characterMovespeed;
     }
   }
   if (keyIsDown(moveWest)) {
-    if (characterX < width && characterX > 0 + 40 + characterFat/2)
+    if (characterX > 0 + 40 + characterFat/2) {
       characterX -= characterMovespeed;
+    }
   }
   if (keyIsDown(moveEast)) {
-    if (characterX < width - characterMovespeed - 300 && characterX > 0 + 40)
+    if (characterX < width - characterMovespeed - 300 - characterFat/2) {
     characterX += characterMovespeed;
+    }
   }
 }
 
@@ -206,5 +208,10 @@ function optionsButtons() {
   }
 }
 
+function spawnEnemies(){
+  if (enemies < enemiesInWave){
+    ellipse
+  }
+}
 
 
