@@ -23,7 +23,14 @@ let moveWest;
 let moveEast;
 let characterFat;
 let characterMovespeed;
+let bullets = [];
+let gunAngle;
 
+// Variables for enemies
+
+let enemies = []
+let spawnpointX;
+let spawnpointY; 
 
 function setup() {
   characterX = 700;
@@ -40,6 +47,7 @@ function draw() {
   characterControl(); 
   console.log(mouseX, mouseY);
   //console.log(screen)
+  updateBullets();
 }
 
 function screenDisplay() {
@@ -112,6 +120,7 @@ function characterControl() {
     characterX += characterMovespeed;
     }
   }
+  displayGun();
 }
 
 function gameDisplay() {
@@ -210,8 +219,41 @@ function optionsButtons() {
 
 function spawnEnemies(){
   if (enemies < enemiesInWave){
-    ellipse
+    ellipse(spawnpointX, spawnpointY, enemyWidth)
   }
 }
 
+function fire() {
+  let thisBullet = {
+    x: characterX,
+    y: characterY,
+    radius: characterFat,
+    angle: cannonAngle,
+    speed: 15
+  };
+  bullets.push(thisBullet);
+}
 
+function updateBullets() {
+  for (let thisBullet of bullets) {
+    thisBullet.x += thisBullet.speed * cos(thisBullet.angle);
+    thisBullet.y += thisBullet.speed * sin(thisBullet.angle);
+    circle(thisBullet.x, thisBullet.y, thisBullet.radius);
+  }
+}
+
+function mouseClicked() {
+  if (screen === "gameScreen") {
+    fire();
+  }
+}
+
+function displayGun() {
+  push();
+  translate(characterX, characterY);
+  gunAngle = atan2(mouseY - characterY, mouseX - characterX);
+  rotate(gunAngle);
+  rect(characterX, characterY, 30, 10);
+  circle(characterX, characterY, characterFat);
+  pop();
+}
