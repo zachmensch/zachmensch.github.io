@@ -73,7 +73,7 @@ function mousePressed() {
       titleButtons();
     }
     // Options Screen Buttons
-    if (screen == "optionScreen") {
+    if (screen === "optionScreen") {
       optionsButtons();
     }
   }
@@ -85,6 +85,7 @@ function characterControl() {
     fill(0);
     stroke(0)
     ellipse(characterX, characterY, characterFat);
+    displayGun();
   }
   // Sets keycodes for WASD controls
   if (controls === "WASD"){
@@ -120,7 +121,7 @@ function characterControl() {
     characterX += characterMovespeed;
     }
   }
-  displayGun();
+
 }
 
 function gameDisplay() {
@@ -227,9 +228,9 @@ function fire() {
   let thisBullet = {
     x: characterX,
     y: characterY,
-    radius: characterFat,
-    angle: cannonAngle,
-    speed: 15
+    radius: characterFat/2,
+    angle: gunAngle,
+    speed: 10
   };
   bullets.push(thisBullet);
 }
@@ -253,7 +254,7 @@ function displayGun() {
   translate(characterX, characterY);
   gunAngle = atan2(mouseY - characterY, mouseX - characterX);
   rotate(gunAngle);
-  rect(characterX, characterY, 30, 10);
-  circle(characterX, characterY, characterFat);
+  rect(0, 0, 25, characterFat/2);
+  circle(0, 0, characterFat);
   pop();
 }
