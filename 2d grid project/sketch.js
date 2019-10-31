@@ -1,6 +1,8 @@
 let grid;
 let rows = 30;
 let cols = 30;
+let blueUnit1 = {};
+let mode;
 
 function setup() {
   if (windowWidth > windowHeight) {
@@ -10,6 +12,13 @@ function setup() {
     createCanvas(windowWidth, windowWidth);
   }
   grid = createEmptyGrid();
+  grid[25][15] = 2;
+  blueUnit1 = {
+    x: 15,
+    y: 25,
+    selected: false 
+  };
+  mode = "play";
 }
 
 function draw() {
@@ -38,11 +47,9 @@ function mousePressed() {
   let xCoord = floor(mouseX / cellSize);
   let yCoord = floor(mouseY / cellSize);
   
-  if (grid[yCoord][xCoord] === 1) {
-    grid[yCoord][xCoord] = 0;
-  }
-  else {
-    grid[yCoord][xCoord] = 1;
+  if (xCoord === blueUnit1.x && yCoord === blueUnit1.y) {
+    blueUnit1.selected = true;
+    mode = "MoveUnit";
   }
 }
 
@@ -64,8 +71,8 @@ function displayGrid(grid, rows, cols) {
       if (grid[y][x] === 0) {
         fill(255);
       }
-      else {
-        fill(0);
+      else if (grid[y][x] === 2) {
+        fill("blue");
       }
       rect(x*cellSize, y*cellSize, cellSize, cellSize);
     }
