@@ -1,7 +1,11 @@
 let grid;
+// Define Map Size
 let rows = 30;
 let cols = 30;
-let blueUnit1 = {};
+// Define Units
+let blueUnit1, blueUnit2, blueUnit3, redUnit1, redUnit2, redUnit3 = {};
+let unitList = [blueUnit1, blueUnit2, blueUnit3, redUnit1, redUnit2, redUnit3];
+
 let mode;
 
 function setup() {
@@ -12,12 +16,7 @@ function setup() {
     createCanvas(windowWidth, windowWidth);
   }
   grid = createEmptyGrid();
-  grid[25][15] = 2;
-  blueUnit1 = {
-    x: 15,
-    y: 25,
-    selected: false 
-  };
+  spawnUnits();
   mode = "play";
 }
 
@@ -46,10 +45,11 @@ function mousePressed() {
 
   let xCoord = floor(mouseX / cellSize);
   let yCoord = floor(mouseY / cellSize);
-  
-  if (xCoord === blueUnit1.x && yCoord === blueUnit1.y) {
-    blueUnit1.selected = true;
-    mode = "MoveUnit";
+  if (mode === "play"){
+    if (xCoord === blueUnit1.x && yCoord === blueUnit1.y) {
+      blueUnit1.selected = true;
+      mode = "MoveUnit";
+    }
   }
 }
 
@@ -74,7 +74,71 @@ function displayGrid(grid, rows, cols) {
       else if (grid[y][x] === 2) {
         fill("blue");
       }
+      else if (grid[y][x] === 3) {
+        fill("red")
+      }
       rect(x*cellSize, y*cellSize, cellSize, cellSize);
     }
+  }
+}
+
+function spawnUnits(){
+  // Spawn Blue Units
+  blueUnit1 = {
+    x: 10,
+    y: 25,
+    selected: false,
+  };
+  grid[25][10] = 2;
+
+  blueUnit2 = {
+    x: 15,
+    y: 25,
+    selected: false,
+  };
+  grid[25][15] = 2;
+
+  blueUnit3 = {
+    x: 20,
+    y: 25,
+    selected: false,
+  };
+  grid[25][20] = 2;
+
+  // Spawn Red Units
+
+  redUnit1 = {
+    x: 10,
+    y: 5,
+    selected: false 
+  };
+  grid[5][10] = 3;
+
+  redUnit2 = {
+    x: 15,
+    y: 5,
+    selected: false 
+  };
+  grid[5][15] = 3;
+
+  redUnit3 = {
+    x: 20,
+    y: 5,
+    selected: false 
+  };
+  grid[5][20] = 3;
+
+}
+
+function moveUnit(){
+  if (mode === "MoveUnit") {
+    for (let units = 0; units <= unitList; units++) {
+      if (unitList[i].selected === true) { 
+      }
+    }     
+      //display where selected unit can move
+        //check if clicked in that area or outside
+          //react accordingly (move the unit or exit move unit mode)
+            //set mode back to play
   }
 }
