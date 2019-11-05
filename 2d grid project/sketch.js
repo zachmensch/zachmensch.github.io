@@ -7,6 +7,7 @@ let blueUnit1, blueUnit2, blueUnit3, redUnit1, redUnit2, redUnit3 = {};
 let unitList = [blueUnit1, blueUnit2, blueUnit3, redUnit1, redUnit2, redUnit3];
 
 let mode;
+let selectedUnit = null;
 
 function setup() {
   if (windowWidth > windowHeight) {
@@ -45,10 +46,36 @@ function mousePressed() {
 
   let xCoord = floor(mouseX / cellSize);
   let yCoord = floor(mouseY / cellSize);
-  if (mode === "play"){
+  if (mode === "play" && selectedUnit === null){
     if (xCoord === blueUnit1.x && yCoord === blueUnit1.y) {
       blueUnit1.selected = true;
       mode = "MoveUnit";
+      selectedUnit = blueUnit1;
+    }
+    if (xCoord === blueUnit2.x && yCoord === blueUnit2.y) {
+      blueUnit2.selected = true;
+      mode = "MoveUnit";
+      selectedUnit = blueUnit2;
+    }
+    if (xCoord === blueUnit3.x && yCoord === blueUnit3.y) {
+      blueUnit3.selected = true;
+      mode = "MoveUnit";
+      selectedUnit = blueUnit3;
+    }
+    if (xCoord === redUnit1.x && yCoord === redUnit1.y) {
+      redUnit1.selected = true;
+      mode = "MoveUnit";
+      selectedUnit = redUnit1;
+    }
+    if (xCoord === redUnit2.x && yCoord === redUnit2.y) {
+      redUnit2.selected = true;
+      mode = "MoveUnit";
+      selectedUnit = redUnit2;
+    }
+    if (xCoord === redUnit3.x && yCoord === redUnit3.y) {
+      redUnit3.selected = true;
+      mode = "MoveUnit";
+      selectedUnit = redUnit3;
     }
   }
 }
@@ -131,14 +158,7 @@ function spawnUnits(){
 }
 
 function moveUnit(){
-  if (mode === "MoveUnit") {
-    for (let units = 0; units <= unitList; units++) {
-      if (unitList[i].selected === true) { 
-      }
-    }     
-      //display where selected unit can move
-        //check if clicked in that area or outside
-          //react accordingly (move the unit or exit move unit mode)
-            //set mode back to play
+  if (mode === "MoveUnit") { 
+    selectedUnit.x
   }
 }
