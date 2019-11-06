@@ -7,7 +7,7 @@ let blueUnit1, blueUnit2, blueUnit3, redUnit1, redUnit2, redUnit3 = {};
 let unitList = [blueUnit1, blueUnit2, blueUnit3, redUnit1, redUnit2, redUnit3];
 
 let mode;
-let selectedUnit = null;
+let selectedUnit = "none";
 
 function setup() {
   if (windowWidth > windowHeight) {
@@ -24,6 +24,7 @@ function setup() {
 function draw() {
   background(220);
   displayGrid(grid, rows, cols);
+  moveUnit();
 }
 
 function windowResized() {
@@ -46,7 +47,7 @@ function mousePressed() {
 
   let xCoord = floor(mouseX / cellSize);
   let yCoord = floor(mouseY / cellSize);
-  if (mode === "play" && selectedUnit === null){
+  if (mode === "play" && selectedUnit === "none"){
     if (xCoord === blueUnit1.x && yCoord === blueUnit1.y) {
       blueUnit1.selected = true;
       mode = "MoveUnit";
@@ -104,6 +105,9 @@ function displayGrid(grid, rows, cols) {
       else if (grid[y][x] === 3) {
         fill("red")
       }
+      else if (grid[y][x] === 4) {
+        fill("green")
+      }
       rect(x*cellSize, y*cellSize, cellSize, cellSize);
     }
   }
@@ -159,6 +163,14 @@ function spawnUnits(){
 
 function moveUnit(){
   if (mode === "MoveUnit") { 
-    selectedUnit.x
+    displayMoveArea();
   }
+}
+
+function displayMoveArea(){
+  let incrementY = -1;
+  for (let i = 0; i < 4; i++) {
+  grid[selectedUnit.y + incrementY][selectedUnit.x] = 4
+  incrementY += incrementY;
+  } 
 }
