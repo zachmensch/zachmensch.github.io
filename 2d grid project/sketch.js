@@ -106,7 +106,7 @@ function displayGrid(grid, rows, cols) {
         fill("red")
       }
       else if (grid[y][x] === 4) {
-        fill("green")
+        fill(50,205,50,125)
       }
       rect(x*cellSize, y*cellSize, cellSize, cellSize);
     }
@@ -168,9 +168,10 @@ function moveUnit(){
 }
 
 function displayMoveArea(){
-  let incrementY = -1;
-  for (let i = 0; i < 4; i++) {
-  grid[selectedUnit.y + incrementY][selectedUnit.x] = 4
-  incrementY += incrementY;
+  let incrementY = 1;
+  for (let i = 0; i < 2; i++) {
+    grid[selectedUnit.y + incrementY][selectedUnit.x] = 4;
+    grid[selectedUnit.y - incrementY][selectedUnit.x] = 4;
+    incrementY += incrementY;
   } 
 }
