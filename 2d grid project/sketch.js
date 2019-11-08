@@ -9,6 +9,10 @@ let unitList = [blueUnit1, blueUnit2, blueUnit3, redUnit1, redUnit2, redUnit3];
 let mode;
 let selectedUnit = "none";
 
+let xCoord;
+
+let yCoord;
+
 function setup() {
   if (windowWidth > windowHeight) {
     createCanvas(windowHeight, windowHeight);
@@ -24,7 +28,6 @@ function setup() {
 function draw() {
   background(220);
   displayGrid(grid, rows, cols);
-  moveUnit();
 }
 
 function windowResized() {
@@ -45,38 +48,55 @@ function keyTyped() {
 function mousePressed() {
   let cellSize = width/cols;
 
-  let xCoord = floor(mouseX / cellSize);
-  let yCoord = floor(mouseY / cellSize);
+  xCoord = floor(mouseX / cellSize);
+  yCoord = floor(mouseY / cellSize);
   if (mode === "play" && selectedUnit === "none"){
     if (xCoord === blueUnit1.x && yCoord === blueUnit1.y) {
       blueUnit1.selected = true;
       mode = "MoveUnit";
       selectedUnit = blueUnit1;
+      displayMoveArea();
     }
     if (xCoord === blueUnit2.x && yCoord === blueUnit2.y) {
       blueUnit2.selected = true;
       mode = "MoveUnit";
       selectedUnit = blueUnit2;
+      displayMoveArea();
     }
     if (xCoord === blueUnit3.x && yCoord === blueUnit3.y) {
       blueUnit3.selected = true;
       mode = "MoveUnit";
       selectedUnit = blueUnit3;
+      displayMoveArea();
     }
     if (xCoord === redUnit1.x && yCoord === redUnit1.y) {
       redUnit1.selected = true;
       mode = "MoveUnit";
       selectedUnit = redUnit1;
+      displayMoveArea();
     }
     if (xCoord === redUnit2.x && yCoord === redUnit2.y) {
       redUnit2.selected = true;
       mode = "MoveUnit";
       selectedUnit = redUnit2;
+      displayMoveArea();
     }
     if (xCoord === redUnit3.x && yCoord === redUnit3.y) {
       redUnit3.selected = true;
       mode = "MoveUnit";
       selectedUnit = redUnit3;
+      displayMoveArea();
+    }
+  }
+  if (mode === "MoveUnit") {
+    if (grid[yCoord][xCoord] === 4) {
+      grid[yCoord][xCoord] = 3;
+      grid[selectedUnit.x][selectedUnit.y] = 0;
+      selectedUnit.x = xCoord;
+      selectedUnit.y = yCoord;
+      mode = "play";
+      selectedUnit = "none";
+      //clearMoveArea();
     }
   }
 }
@@ -120,21 +140,21 @@ function spawnUnits(){
     y: 25,
     selected: false,
   };
-  grid[25][10] = 2;
+  grid[blueUnit1.y][blueUnit1.x] = 2;
 
   blueUnit2 = {
     x: 15,
     y: 25,
     selected: false,
   };
-  grid[25][15] = 2;
+  grid[blueUnit2.y][blueUnit2.x] = 2;
 
   blueUnit3 = {
     x: 20,
     y: 25,
     selected: false,
   };
-  grid[25][20] = 2;
+  grid[blueUnit3.y][blueUnit3.x] = 2;
 
   // Spawn Red Units
 
@@ -143,35 +163,43 @@ function spawnUnits(){
     y: 5,
     selected: false 
   };
-  grid[5][10] = 3;
+  grid[redUnit1.y][redUnit1.x] = 3;
 
   redUnit2 = {
     x: 15,
     y: 5,
     selected: false 
   };
-  grid[5][15] = 3;
+  grid[redUnit2.y][redUnit2.x] = 3;
 
   redUnit3 = {
     x: 20,
     y: 5,
     selected: false 
   };
-  grid[5][20] = 3;
+  grid[redUnit3.y][redUnit3.x] = 3;
 
 }
 
-function moveUnit(){
-  if (mode === "MoveUnit") { 
-    displayMoveArea();
-  }
-}
 
 function displayMoveArea(){
   let incrementY = 1;
   for (let i = 0; i < 2; i++) {
     grid[selectedUnit.y + incrementY][selectedUnit.x] = 4;
     grid[selectedUnit.y - incrementY][selectedUnit.x] = 4;
+    grid[selectedUnit.y + incrementY][selectedUnit.x + 1] = 4;
+    grid[selectedUnit.y - incrementY][selectedUnit.x + 1] = 4;
+    grid[selectedUnit.y + incrementY][selectedUnit.x - 1] = 4;
+    grid[selectedUnit.y - incrementY][selectedUnit.x - 1] = 4;
+    grid[selectedUnit.y + incrementY][selectedUnit.x + 2] = 4;
+    grid[selectedUnit.y - incrementY][selectedUnit.x + 2] = 4;
+    grid[selectedUnit.y + incrementY][selectedUnit.x - 2] = 4;
+    grid[selectedUnit.y - incrementY][selectedUnit.x - 2] = 4;
+    grid[selectedUnit.y][selectedUnit.x - 1] = 4;
+    grid[selectedUnit.y][selectedUnit.x - 2] = 4;
+    grid[selectedUnit.y][selectedUnit.x + 1] = 4;
+    grid[selectedUnit.y][selectedUnit.x + 2] = 4;
     incrementY += incrementY;
   } 
 }
+
